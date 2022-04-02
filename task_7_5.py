@@ -1,4 +1,5 @@
 import os
+import json
 
 
 def dir_stat(folder='./'):
@@ -37,8 +38,10 @@ def dir_stat(folder='./'):
     for key in stat_dict:
         stat_dict[key] = tuple(stat_dict[key])
 
-    return stat_dict
+    with open(f'{folder}_summary.json', 'w', encoding='utf-8') as f:
+        json.dump(stat_dict, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":
     print(dir_stat('some_data'))
+
